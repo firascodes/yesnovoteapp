@@ -1,0 +1,156 @@
+const numProposals = 3; // replace with the actual number of proposals
+const { data: proposals, isLoading: proposalsLoading } = useContractRead(contract, "proposals", [...Array(numProposals).keys()]);
+
+if (proposalsLoading) {
+  return <div>Loading...</div>;
+}
+
+return (
+  <div>
+    {proposals.map((proposal, index) => (
+      <div key={index}>{proposal}</div>
+    ))}
+  </div>
+);
+
+//BACKUP
+
+
+
+import { ConnectWallet, useAddress, useContract, useContractRead, Web3Button } from "@thirdweb-dev/react";
+import type { NextPage } from "next";
+import styles from "../styles/Home.module.css";
+
+const Home: NextPage = () => {
+
+  const address= useAddress();
+  const contractAddress = "0x1cA2353648b3D239CDb205D4eEe86438045B6d31";
+
+  const { contract } = useContract(contractAddress);
+  const { data: proposal1, isLoading: proposal1Loading } = useContractRead(contract,"proposals",0);
+  const { data: proposal2, isLoading: proposal2Loading } = useContractRead(contract,"proposals",3);
+  const { data: proposal3, isLoading: proposal3Loading } = useContractRead(contract,"proposals",2);
+  const { data: hasVoted, isLoading: hasVotedLoading } = useContractRead(contract, "hasVoted", address)
+
+  return (
+    <div className={styles.container}>
+      <main className={styles.main}>
+      <h1>Voting Question Dapp</h1>
+      <ConnectWallet theme="dark"/>
+      <div className={styles.cardContainer}>
+          <div className={styles.card}>
+            <h1>Question</h1>
+            <div>
+            {address ? (
+              <div>
+                { proposal1Loading ? (
+                  <div>
+                    <p> Loading Proposal ....</p>
+                  </div>
+                ): (
+                  <div>
+                    <h2>{proposal1[0]}</h2>
+                    <div className={styles.btns}>
+                      <Web3Button className={styles.web3btn}
+                      contractAddress={contractAddress}
+                      action={(contract)=> contract.call("voteYes",0)}
+                      onSuccess={(result) => alert("Success!")}
+                      onSubmit={() => console.log("Transaction submitted")}
+                      theme="light"
+                      isDisabled={hasVoted}
+                      >Yes</Web3Button>
+                      <br />
+                      <br />
+                      <Web3Button className={styles.web3btn}
+                      contractAddress={contractAddress}
+                      action={(contract)=> contract.call("voteNo",0)}
+                      onSuccess={(result) => alert("Success!")}
+                      onSubmit={() => console.log("Transaction submitted")}
+                      theme="light"
+                      // isDisabled
+                      >No</Web3Button>
+                    </div>
+                    <div>
+                      {!hasVotedLoading && hasVoted? (
+                        <div>
+                            <h3>Result: </h3>
+                            <p>Yes:  {proposal1[1].toNumber()}</p>
+                            <p>No:  {proposal1[2].toNumber()}</p>
+                        </div>
+                      ): (
+                        <div>
+                          <br />
+                          <p>You have not voted yet. Result will show after you vote</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+              ) : (
+                <p>Please connect your wallet to continue.</p>
+              )}
+            </div>
+          </div>
+
+          <div className={styles.card}>
+            <h1>Question</h1>
+            <div>
+            {address ? (
+              <div>
+                { proposal2Loading ? (
+                  <div>
+                    <p> Loading Proposal ....</p>
+                  </div>
+                ): (
+                  <div>
+                    <h2>{proposal2[1]}</h2>
+                    <div className={styles.btns}>
+                      <Web3Button className={styles.web3btn}
+                      contractAddress={contractAddress}
+                      action={(contract)=> contract.call("voteYes",0)}
+                      onSuccess={(result) => alert("Success!")}
+                      onSubmit={() => console.log("Transaction submitted")}
+                      theme="light"
+                      isDisabled={hasVoted}
+                      >Yes</Web3Button>
+                      <br />
+                      <br />
+                      <Web3Button className={styles.web3btn}
+                      contractAddress={contractAddress}
+                      action={(contract)=> contract.call("voteNo",0)}
+                      onSuccess={(result) => alert("Success!")}
+                      onSubmit={() => console.log("Transaction submitted")}
+                      theme="light"
+                      // isDisabled
+                      >No</Web3Button>
+                    </div>
+                    <div>
+                      {!hasVotedLoading && hasVoted? (
+                        <div>
+                            <h3>Result: </h3>
+                            <p>Yes:  {proposal2[1].toNumber()}</p>
+                            <p>No:  {proposal2[2].toNumber()}</p>
+                        </div>
+                      ): (
+                        <div>
+                          <br />
+                          <p>You have not voted yet. Result will show after you vote</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+              ) : (
+                <p>Please connect your wallet to continue.</p>
+              )}
+            </div>
+          </div>
+      </div>
+      </main>
+    </div>
+  );
+};
+
+export default Home;

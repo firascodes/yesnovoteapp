@@ -76,6 +76,14 @@
   max-width: 350px;
 }
 
+.cardContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .card:hover,
 .card:focus,
 .card:active {
@@ -116,4 +124,12 @@
 }
 .logo img {
   filter: invert(1);
+}
+
+.card h4{
+  color: lightgreen;
+}
+
+.or{
+  margin: 0 30px !important;
 }
