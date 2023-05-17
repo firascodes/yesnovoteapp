@@ -1,3 +1,64 @@
+# Yes-No Voting / Decentralized Opinion Board
+
+DOB is a decentralized application (dApp) that allows for the creation and voting on Yes/No opinion polls. This project aims to promote a transparent and democratic process by registering each vote on the blockchain, ensuring it is immutable and transparent to all participants.
+
+## 🚀 Technologies Used
+
+ ![Solidity](https://img.shields.io/badge/-Solidity-black?style=flat&logo=solidity)      
+ ![TypeScript](https://img.shields.io/badge/-TypeScript-blue?style=flat&logo=typescript)        
+ ![React](https://img.shields.io/badge/-React-black?style=flat&logo=react)       
+ ![CSS](https://img.shields.io/badge/-CSS-1572B6?style=flat&logo=css3&logoColor=white)       
+ ![Thirdweb SDK](https://img.shields.io/badge/-Thirdweb_SDK-blueviolet)      
+
+## 📌 Features
+
+- Create Yes/No opinion polls
+- Cast your vote securely and transparently
+- Each vote is registered on the blockchain, ensuring verifiability and immutability
+- View the results of the opinion polls in real time
+- Responsive design for a seamless user experience across all devices
+
+## 📥 Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+- ![Node.js](https://img.shields.io/badge/-Node.js-black?style=flat&logo=node.js) [Node.js](https://nodejs.org/)
+- ![NPM](https://img.shields.io/badge/-npm-CB3837?style=flat&logo=npm) [NPM](https://www.npmjs.com/)
+- ![Metamask](https://img.shields.io/badge/-Metamask-FCA121?style=flat&logo=metamask) [Metamask](https://metamask.io/)
+
+### Installation
+
+1. Clone the repository
+
+   ```
+   git clone https://github.com/firascodes/yesnovoteapp.git
+   ```
+
+2. Navigate to the project folder
+
+   ```
+   cd yesnovoteapp
+   ```
+
+3. Install dependencies
+
+   ```
+   npm install
+   ```
+
+4. Start the development server
+
+   ```
+   npm start
+   ```
+
+## 📄 Smart Contract
+
+The smart contract for the Decentralized Opinion Board is written in Solidity and can be found in the `contracts` directory.
+
+
 ## Getting Started
 
 Create a project using this example:
